@@ -1,39 +1,37 @@
 
-
 ---
 
-📖 Flussonic Media Server – Installation & Activation Guide
+📺 Flussonic Media Server
+
+Flussonic Media Server is a powerful streaming platform for live TV, VOD, IPTV, and OTT delivery.  
+This README provides installation instructions, activation steps, and community support links.
+
+---
 
 ⚙️ Prerequisites
-- Supported OS: Ubuntu LTS 24.04, 22.04, 20.04, CentOS/RedHat, and other RPM-based distros  
-- Architectures: amd64, arm64  
-- Ensure HTTP port 80 is free (Flussonic uses it by default)  
-- Root or sudo privileges required  
+- OS: Ubuntu 24.04 / 22.04 / 20.04, CentOS/RedHat  
+- Architecture: amd64, arm64  
+- Ports: Ensure port 80 is free for the web interface  
+- Privileges: Root or sudo access  
 
 ---
 
-🚀 Installation Methods
+🚀 Installation
 
-1. Quick Install via Script
+Quick Install (Recommended)
 `bash
 curl -sSf https://flussonic.com/public/install.sh | sh
 `
-This script automatically configures repositories and installs Flussonic.
 
----
-
-2. Manual Install (Debian/Ubuntu)
+Manual Install (Debian/Ubuntu)
 `bash
 wget -q -O - https://flussonic.com/doc/install/binary/gpg.key | apt-key add -
 echo "deb https://flussonic.com/doc/install binary/" > /etc/apt/sources.list.d/flussonic.list
 apt-get update
 apt-get -y install flussonic flussonic-ffmpeg flussonic-python
 `
-This method gives you more control over package sources.
 
----
-
-3. CentOS/RedHat (RPM-based)
+CentOS/RedHat
 `bash
 rpm --import https://flussonic.com/doc/install/binary/gpg.key
 cat <<EOF > /etc/yum.repos.d/flussonic.repo
@@ -54,39 +52,48 @@ yum install flussonic flussonic-ffmpeg flussonic-python -y
    `bash
    service flussonic start
    `
-2. Open the web interface:  
-   http://localhost  
-3. Enter your license key (provided by Flussonic).  
+2. Open the web interface: http://localhost  
+3. Enter your license key provided by Flussonic.  
 
 ---
 
-🔄 Updating Flussonic
-To update to the latest version:
+🔄 Updating
 `bash
 apt-get update
 apt-get -y install flussonic
 service flussonic restart
 `
-For RPM-based systems, use yum update flussonic.  
+For RPM-based systems:  
+`bash
+yum update flussonic
+`
 
 ---
 
 🧩 Useful Commands
-- Start service: service flussonic start  
-- Stop service: service flussonic stop  
-- Restart service: service flussonic restart  
-- Check status: service flussonic status  
+- Start: service flussonic start  
+- Stop: service flussonic stop  
+- Restart: service flussonic restart  
+- Status: service flussonic status  
+
+---
+
+🌐 Community & Support
+- Telegram Group: Flussonic Help 📡💻  
+  - 360+ members, active discussions  
+  - Rules: Group Rules  
+  - ❌ Do not buy/sell inside the group  
+- Official Docs: Flussonic Documentation  
 
 ---
 
 📌 Notes
-- Default admin login is set during installation; change the password immediately for security.  
-- Flussonic can also run inside Docker containers for isolated deployments.  
-- Supports Live TV, VOD, IPTV, OTT streaming platforms.  
+- Change the default admin password immediately after installation.  
+- Flussonic supports Docker deployment for isolated environments.  
+- Ideal for ISP, OTT, IPTV, and enterprise streaming solutions.  
 
 ---
 
-Sources: Flussonic Official Manual GitHub – Flussonic Media Server Guide GeeksforGeeks – Flussonic Install Guide
+Sources: Flussonic official documentation
 
 ---
-
