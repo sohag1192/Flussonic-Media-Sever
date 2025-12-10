@@ -1,7 +1,4 @@
-
 -----
-
-
 <div align="center">
 
 # 🎬 Flussonic Media Server (ISP Edition)
@@ -15,7 +12,7 @@
 <br/>
 *Optimized for High Concurrency & Low Latency Streaming.*
 
-[Installation](#-installation) • [Configuration](#-configuration-examples) • [Performance Tuning](#-isp-performance-tuning) • [Troubleshooting](#-troubleshooting)
+[Installation](#-installation) • [Configuration](#-configuration-examples) • [Performance Tuning](#-isp-performance-tuning) • [Troubleshooting](#-troubleshooting-&-commands)
 
 </div>
 
@@ -33,6 +30,8 @@ graph LR
     C -->|Smart TV| D[End User]
     C -->|Mobile App| D
     B -->|Archive| E[(DVR Storage)]
+    style B fill:#f96,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
 ````
 
 -----
@@ -71,10 +70,11 @@ apt-get update && apt-get -y install flussonic flussonic-ffmpeg flussonic-python
 
 -----
 
+## ⚙️ Configuration Examples
 
+<details> <summary><b>🔹 Example 1: Auth Backend (Billing Integration)</b></summary>
 
-<details>
-<summary><b>🔹 Example 3: Auth Backend (Billing Integration)</b></summary>
+This configuration sets up a premium channel that checks a viewer's subscription status against your billing system before playing.****
 
 ```erlang
 # Global settings
@@ -84,11 +84,11 @@ pulse_db /var/lib/flussonic;
 
 # Stream with authentication
 stream premium_channel {
-  url http://provider.com/live/premium.m3u8;
+  url [http://provider.com/live/premium.m3u8](http://provider.com/live/premium.m3u8);
 
   # Require authentication via external backend
   auth backend {
-    url http://billing.example.com/auth;
+    url [http://billing.example.com/auth](http://billing.example.com/auth);
     timeout 5s;
     cache 30s;   # Cache successful auth for 30 seconds
   }
@@ -98,17 +98,20 @@ stream premium_channel {
 }
 ```
 
+#### 📝 Explanation
+
+  * **auth backend**: Flussonic queries your billing/CRM system to validate each viewer.
+  * **timeout**: Maximum wait time for backend response.
+  * **cache**: Reduces load by caching successful responses.
+  * **deny\_backend\_fail**: Ensures strict access control if the backend is unreachable.
+
 </details>
 
----
 
-### 📝 Explanation
-- **auth backend**: Flussonic queries your billing/CRM system to validate each viewer.  
-- **timeout**: Maximum wait time for backend response.  
-- **cache**: Reduces load by caching successful responses.  
-- **deny_backend_fail**: Ensures strict access control if the backend is unreachable.  
 
----
+<details> <summary><b>🔹 Example 2: Simple Global Auth</b></summary>
+
+Connect your entire server to a PHP/Python billing panel.
 
 ```erlang
 # Connect to your PHP/Python billing panel
@@ -121,7 +124,7 @@ auth_backend [http://127.0.0.1/billing_api/auth.php](http://127.0.0.1/billing_ap
 
 ## 🔧 ISP Performance Tuning
 
-For high-traffic servers (10Gbps+), apply these kernel optimizations to `/etc/sysctl.conf`:
+For high-traffic servers (**10Gbps+**), apply these kernel optimizations to `/etc/sysctl.conf` to prevent packet loss and buffer overflows.
 
 ```ini
 # Maximize Network Buffers
@@ -139,7 +142,11 @@ net.ipv4.tcp_max_syn_backlog = 4096
 net.ipv4.tcp_tw_reuse = 1
 ```
 
-*Apply changes with:* `sysctl -p`
+> **Note:** Apply changes immediately by running:
+>
+> ```bash
+> sysctl -p
+> ```
 
 -----
 
@@ -156,21 +163,25 @@ net.ipv4.tcp_tw_reuse = 1
 
 ## 🤝 Community & Resources
 
-  * **Official Docs:** [flussonic.com/doc](https://flussonic.com/doc)
-  * **Email Support:** support@flussonic.com
+### Official
+
+  * **Docs:** [flussonic.com/doc](https://flussonic.com/doc)
+  * **Support:** support@flussonic.com
+
+### Unofficial Community
+
+  * **Telegram Group:** [Flussonic Help](https://www.google.com/search?q=https://t.me/flussonic_help) *(Search for group)*
 
 -----
 
-## 🤝 Unofficial Community & Resources
-
-  * **Telegram Group:** [Flussonic Help](https://www.google.com/search?q=https://t.me/flussonic_help)
-
------
 <div align="center">
 
-**Maintained by [sohag1192](https://github.com/sohag1192)**
-<br>
-*Unofficial Repository for Deployment Scripts & Custom Configs*
+Maintained by sohag1192
+
+
+Unofficial Repository for Deployment Scripts & Custom Configs
 
 </div>
+
+
 
