@@ -1,6 +1,6 @@
 ![Badge](https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Fsohag1192%2FFlussonic-Media-Sever&label=Hit&icon=github&color=%23198754&message=&style=flat&tz=UTC)
 
-[tedt] (https://t.me/+uQucOgx51IMzM2E1)
+- 💬 Join our [Telegram Group](https://t.me/+uQucOgx51IMzM2E1) for support and updates  
 -----
 <div align="center">
 
@@ -70,6 +70,17 @@ wget -q -O - [https://flussonic.com/doc/install/binary/gpg.key](https://flussoni
 echo "deb [https://flussonic.com/doc/install](https://flussonic.com/doc/install) binary/" > /etc/apt/sources.list.d/flussonic.list
 apt-get update && apt-get -y install flussonic flussonic-ffmpeg flussonic-python
 ```
+### 1. **Online License Key**
+- Obtain a trial or purchased license from [Flussonic Licensing Portal](https://flussonic.com/doc/admin/licensing/#admin-licensing-online-key).  
+- Enter the license key in either:
+  - `/etc/flussonic/license.txt`  
+  - Flussonic Web UI → **Config → License**  
+- Ensure your server allows outbound HTTP/HTTPS connections on ports **80** and **443** for validation.  
+- Example license format ( That is Only Demo license :  
+  ```
+  l4|WXHMkfXhFHeNmvDz-M_tb4|r6BzpmVPpjgKpn9IunpFp5lLbCZOp3
+  ```
+- Licenses are **not tied to hardware**. You can migrate to another server by stopping Flussonic on the old machine and starting it on the new one with the same key.
 
 -----
 
